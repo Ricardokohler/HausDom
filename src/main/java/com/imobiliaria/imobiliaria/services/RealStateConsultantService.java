@@ -1,6 +1,6 @@
 package com.imobiliaria.imobiliaria.services;
 
-import com.imobiliaria.imobiliaria.entities.RealStateConsultant;
+import com.imobiliaria.imobiliaria.entities.Consultant;
 import com.imobiliaria.imobiliaria.repositories.RealStateConsultantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,19 +16,19 @@ public class RealStateConsultantService {
 
 
     //Create
-    public RealStateConsultant create(RealStateConsultant RealStateConsultant){
-        return repository.save(RealStateConsultant);
+    public Consultant create(Consultant Consultant){
+        return repository.save(Consultant);
     }
 
     //Get All
-    public List <RealStateConsultant> getAll(){
+    public List <Consultant> getAll(){
         return repository.findAll();
     }
 
 
 
     //Get By Id
-    public Optional <RealStateConsultant> getById (Long id){
+    public Optional <Consultant> getById (Long id){
         return repository.findById(id);
 
     }
@@ -43,17 +43,17 @@ public class RealStateConsultantService {
 
 
     //Update
-    public RealStateConsultant update(Long id, RealStateConsultant RealStateConsultant){
-        Optional <RealStateConsultant> oldRealStateConsultant = repository.findById(id);
+    public Consultant update(Long id, Consultant Consultant){
+        Optional <Consultant> oldRealStateConsultant = repository.findById(id);
 
         if(oldRealStateConsultant.isPresent()){
-            RealStateConsultant newRealStateConsultant = oldRealStateConsultant.get();
+            Consultant newConsultant = oldRealStateConsultant.get();
 
-            newRealStateConsultant.setName(RealStateConsultant.getName());
-            newRealStateConsultant.setAddress(RealStateConsultant.getAddress());
-            newRealStateConsultant.setPhone(RealStateConsultant.getPhone());
+            newConsultant.setName(Consultant.getName());
+            newConsultant.setAddress(Consultant.getAddress());
+            newConsultant.setPhone(Consultant.getPhone());
 
-            return repository.save(newRealStateConsultant);
+            return repository.save(newConsultant);
 
         } else {
             throw new RuntimeException("Id não encontrado");

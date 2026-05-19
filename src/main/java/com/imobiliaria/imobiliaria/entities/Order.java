@@ -1,17 +1,12 @@
 package com.imobiliaria.imobiliaria.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name="tb_pedidos")
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 public class Order {
 
     @Id
@@ -19,16 +14,61 @@ public class Order {
     private Long id;
     private String observations;
 
-    @OneToMany(mappedBy = "order")
-    private List<Property> properties;
+    @ManyToMany
+    @JoinTable(name="tb_orders_properties", joinColumns = @JoinColumn(name = "Id_Order"), inverseJoinColumns = @JoinColumn(name = "id_propertie"))
+    private List<Property> propertieList = new ArrayList<>();
 
-    @OneToOne
-    @JoinColumn
-    private RealStateConsultant consultant;
+    @ManyToOne
+    @JoinColumn(name = "Id_consultant")
+    private Consultant consultant;
 
-    @OneToOne
-    @JoinColumn
+    @ManyToOne
+    @JoinColumn(name = "id_client")
     private Client client;
 
+    public Order() {
+    }
 
+    public Order(Long id, String observations, Consultant consultant, Client client) {
+        this.id = id;
+        this.observations = observations;
+        this.consultant = consultant;
+        this.client = client;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getObservations() {
+        return observations;
+    }
+
+    public void setObservations(String observations) {
+        this.observations = observations;
+    }
+
+    public List<Property> getPropertieList() {
+        return propertieList;
+    }
+
+    public Consultant getConsultant() {
+        return consultant;
+    }
+
+    public void setConsultant(Consultant consultant) {
+        this.consultant = consultant;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }

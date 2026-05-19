@@ -1,6 +1,6 @@
 package com.imobiliaria.imobiliaria.controllers;
 
-import com.imobiliaria.imobiliaria.entities.RealStateConsultant;
+import com.imobiliaria.imobiliaria.entities.Consultant;
 import com.imobiliaria.imobiliaria.services.RealStateConsultantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,16 +20,16 @@ public class RealStateConsultantController {
 
     //Create
     @PostMapping("/add")
-    public ResponseEntity <RealStateConsultant> create(@RequestBody RealStateConsultant RealStateConsultant) {
-        RealStateConsultant createdRealStateConsultant = service.create(RealStateConsultant);
+    public ResponseEntity <Consultant> create(@RequestBody Consultant Consultant) {
+        Consultant createdConsultant = service.create(Consultant);
 
-        return new ResponseEntity<>(createdRealStateConsultant, HttpStatus.CREATED);
+        return new ResponseEntity<>(createdConsultant, HttpStatus.CREATED);
     }
 
 
     @GetMapping("/all")
-    public ResponseEntity <List<RealStateConsultant>> getAll(){
-        List <RealStateConsultant> allProperties = service.getAll();
+    public ResponseEntity <List<Consultant>> getAll(){
+        List <Consultant> allProperties = service.getAll();
 
         return new ResponseEntity<>(allProperties, HttpStatus.OK);
     }
@@ -38,7 +38,7 @@ public class RealStateConsultantController {
 
     @GetMapping("/{id}")
     public ResponseEntity <?> getById(@PathVariable Long id){
-        Optional<RealStateConsultant> optionalRealStateConsultant = service.getById(id);
+        Optional<Consultant> optionalRealStateConsultant = service.getById(id);
 
         if (optionalRealStateConsultant.isPresent()) {
 
@@ -53,7 +53,7 @@ public class RealStateConsultantController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity <String> delete(@PathVariable Long id){
-        Optional <RealStateConsultant> deletedRealStateConsultant = service.getById(id);
+        Optional <Consultant> deletedRealStateConsultant = service.getById(id);
 
         if(deletedRealStateConsultant.isPresent()){
             service.deleteById(id);
@@ -67,11 +67,11 @@ public class RealStateConsultantController {
 
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody RealStateConsultant RealStateConsultant){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Consultant Consultant){
 
         try{
-        RealStateConsultant updatedRealStateConsultant = service.update(id, RealStateConsultant);
-        return new ResponseEntity<>(updatedRealStateConsultant, HttpStatus.OK);
+        Consultant updatedConsultant = service.update(id, Consultant);
+        return new ResponseEntity<>(updatedConsultant, HttpStatus.OK);
 
         } catch (RuntimeException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");

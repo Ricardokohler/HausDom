@@ -51,7 +51,6 @@ public class OrderService {
 
             newOrder.setClient(Order.getClient());
             newOrder.setConsultant(Order.getConsultant());
-            newOrder.setProperty(Order.getProperty());
             newOrder.setObservations(Order.getObservations());
 
             return repository.save(newOrder);
