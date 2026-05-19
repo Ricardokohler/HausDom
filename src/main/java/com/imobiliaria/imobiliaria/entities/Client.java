@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name="tb_clients")
 @Data
@@ -21,9 +23,8 @@ public class Client {
     private String address;
     private double anualIncome;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "client")
-    private Order order;
+    private List<Order> orderList;
 
 
     public Client(Long id, String name, String address, double anualIncome) {
