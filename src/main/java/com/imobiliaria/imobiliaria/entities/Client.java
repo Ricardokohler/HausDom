@@ -20,16 +20,18 @@ public class Client {
     private Long id;
 
     private String name;
+    private String phone;
     private String address;
-    private double anualIncome;
+    private Double anualIncome;
 
     @OneToMany(mappedBy = "client")
     private List<Order> orderList;
 
 
-    public Client(Long id, String name, String address, double anualIncome) {
+    public Client(Long id, String name, String phone,String address, Double anualIncome) {
         this.id = id;
         this.name = name;
+        this.phone = phone;
         this.address = address;
         this.anualIncome = anualIncome;
     }

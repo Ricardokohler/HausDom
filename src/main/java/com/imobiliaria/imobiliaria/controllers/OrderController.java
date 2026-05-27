@@ -1,6 +1,7 @@
 package com.imobiliaria.imobiliaria.controllers;
 
 import com.imobiliaria.imobiliaria.entities.Order;
+import com.imobiliaria.imobiliaria.entities.dtos.OrderDto;
 import com.imobiliaria.imobiliaria.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,42 +21,57 @@ public class OrderController {
 
     //Create
     @PostMapping("/add")
-    public ResponseEntity <Order> create(@RequestBody Order Order) {
-        Order createdOrder = service.create(Order);
+    public ResponseEntity <OrderDto> create(@RequestBody OrderDto OrderDto) {
+        OrderDto createdOrder = service.create(OrderDto);
 
         return new ResponseEntity<>(createdOrder, HttpStatus.CREATED);
     }
 
 
+    //Get All
     @GetMapping("/all")
-    public ResponseEntity <List<Order>> getAll(){
-        List <Order> allProperties = service.getAll();
+    public ResponseEntity <List<OrderDto>> getAll(){
+        List <OrderDto> propertieList = service.getAll();
 
-        return new ResponseEntity<>(allProperties, HttpStatus.OK);
+        return new ResponseEntity<>(propertieList, HttpStatus.OK);
     }
 
 
 
+    //Get By Id
     @GetMapping("/{id}")
     public ResponseEntity <?> getById(@PathVariable Long id){
-        Optional<Order> optionalOrder = service.getById(id);
+        OrderDto orderDto = service.getById(id);
 
-        if (optionalOrder.isPresent()) {
-
-            return new ResponseEntity<>(optionalOrder, HttpStatus.OK);
-
+        if (orderDto != null) {
+            return new ResponseEntity<>(orderDto, HttpStatus.OK);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");
         }
     }
 
 
+    //Update By Id
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody OrderDto orderDto){
 
+        try{
+            OrderDto updatedOrder = service.update(id, orderDto);
+        return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
+
+        } catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");
+        }
+    }
+
+
+
+    //Delete By Id
     @DeleteMapping("/delete/{id}")
     public ResponseEntity <String> delete(@PathVariable Long id){
-        Optional <Order> deletedOrder = service.getById(id);
+        OrderDto deletedOrder = service.getById(id);
 
-        if(deletedOrder.isPresent()){
+        if(deletedOrder != null){
             service.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body("Order successfully deleted");
 
@@ -64,17 +80,4 @@ public class OrderController {
         }
     }
 
-
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Order Order){
-
-        try{
-        Order updatedOrder = service.update(id, Order);
-        return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
-
-        } catch (RuntimeException e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");
-        }
-    }
 }
