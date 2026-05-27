@@ -52,6 +52,10 @@ public class Order {
         this.observations = observations;
     }
 
+    public void setPropertieList(List<Property> propertieList) {
+        this.propertieList = propertieList;
+    }
+
     public List<Property> getPropertieList() {
         return propertieList;
     }

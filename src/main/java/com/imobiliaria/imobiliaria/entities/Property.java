@@ -19,7 +19,7 @@ public class Property {
 
     private String title;
     private String address;
-    private double price;
+    private Double price;
 
     @ManyToMany(mappedBy = "propertieList")
     private List<Order> orderList = new ArrayList<>();
@@ -27,7 +27,7 @@ public class Property {
     public Property() {
     }
 
-    public Property(Long id, String title, String address, double price) {
+    public Property(Long id, String title, String address, Double price) {
         this.id = id;
         this.title = title;
         this.address = address;
@@ -62,8 +62,12 @@ public class Property {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
     }
 
     public List<Order> getOrderList() {

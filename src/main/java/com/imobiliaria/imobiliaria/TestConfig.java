@@ -35,11 +35,11 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Client c1 = new Client(null, "Luiz Silva", "Rua da Saudade", 200.0);
-        Client c2 = new Client(null, "Maria Oliveira", "Avenida Brasil", 350.0);
-        Client c3 = new Client(null, "Carlos Pereira", "Praça da Liberdade", 150.0);
-        Client c4 = new Client(null, "Ana Souza", "Rua das Flores", 400.0);
-        Client c5 = new Client(null, "João Santos", "Travessa do Mercado", 275.0);
+        Client c1 = new Client(null, "Luiz Silva", "3333-333", "Rua da Saudade", 200.0);
+        Client c2 = new Client(null, "Maria Oliveira", "3333-333","Avenida Brasil", 350.0);
+        Client c3 = new Client(null, "Carlos Pereira", "3333-3333", "Praça da Liberdade", 150.0);
+        Client c4 = new Client(null, "Ana Souza", "4444-4444","Rua das Flores", 400.0);
+        Client c5 = new Client(null, "João Santos", "5555-5555","Travessa do Mercado", 275.0);
         clientRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5));
 
         Property p1 = new Property(null, "Casa bonita", "Avenida Luis Lira", 2555000.00);

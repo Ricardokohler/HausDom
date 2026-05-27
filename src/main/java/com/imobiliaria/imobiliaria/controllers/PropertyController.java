@@ -1,6 +1,7 @@
 package com.imobiliaria.imobiliaria.controllers;
 
 import com.imobiliaria.imobiliaria.entities.Property;
+import com.imobiliaria.imobiliaria.entities.dtos.PropertyDto;
 import com.imobiliaria.imobiliaria.services.PropertyService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,42 +22,42 @@ public class PropertyController {
 
     //Create
     @PostMapping("/add")
-    public ResponseEntity <Property> create(@RequestBody Property property) {
-        Property createdProperty = service.create(property);
+    public ResponseEntity <PropertyDto> create(@RequestBody PropertyDto propertyDto) {
+        PropertyDto createdProperty = service.create(propertyDto);
 
         return new ResponseEntity<>(createdProperty, HttpStatus.CREATED);
     }
 
 
+    //Get All
     @GetMapping("/all")
-    public ResponseEntity <List<Property>> getAll(){
-        List <Property> allProperties = service.getAll();
+    public ResponseEntity <List<PropertyDto>> getAll(){
+        List <PropertyDto> allProperties = service.getAll();
 
         return new ResponseEntity<>(allProperties, HttpStatus.OK);
     }
 
 
-
+    //Get By Id
     @GetMapping("/{id}")
     public ResponseEntity <?> getById(@PathVariable Long id){
-        Optional<Property> optionalProperty = service.getById(id);
+        PropertyDto optionalProperty = service.getById(id);
 
-        if (optionalProperty.isPresent()) {
+        if (optionalProperty != null) {
 
             return new ResponseEntity<>(optionalProperty, HttpStatus.OK);
-
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");
         }
     }
 
 
-
+    //Delete By Id
     @DeleteMapping("/delete/{id}")
     public ResponseEntity <String> delete(@PathVariable Long id){
-        Optional <Property> deletedProperty = service.getById(id);
+        PropertyDto deletedProperty = service.getById(id);
 
-        if(deletedProperty.isPresent()){
+        if(deletedProperty!= null){
             service.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body("Property successfully deleted");
 
@@ -66,16 +67,18 @@ public class PropertyController {
     }
 
 
-
+    //Update By Id
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Property property){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody PropertyDto propertyDto){
 
         try{
-        Property updatedProperty = service.update(id, property);
-        return new ResponseEntity<>(updatedProperty, HttpStatus.OK);
+            PropertyDto updatedProperty = service.update(id, propertyDto);
+            return new ResponseEntity<>(updatedProperty, HttpStatus.OK);
 
         } catch (RuntimeException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");
         }
     }
+
+
 }
