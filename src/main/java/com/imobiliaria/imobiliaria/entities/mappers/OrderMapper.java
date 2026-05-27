@@ -12,7 +12,7 @@ public class OrderMapper {
             order.setId(dto.getId());
         }
 
-        order.setObservations(dto.getObservation());
+        order.setObservations(dto.getObservations());
         order.setPropertieList(dto.getProperiteList());
         order.setConsultant(dto.getConsultant());
         order.setClient(dto.getClient());
@@ -27,7 +27,7 @@ public class OrderMapper {
         dto.setId(order.getId());
         dto.setProperiteList(order.getPropertieList());
 
-        dto.setObservation(order.getObservations());
+        dto.setObservations(order.getObservations());
         dto.setProperiteList(order.getPropertieList());
         dto.setConsultant(order.getConsultant());
         dto.setClient(order.getClient());
