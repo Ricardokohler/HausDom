@@ -1,7 +1,7 @@
 spring:
 
   application:
-    name: locaveics
+    name: HausDom
 
   profiles:
     active: h2
