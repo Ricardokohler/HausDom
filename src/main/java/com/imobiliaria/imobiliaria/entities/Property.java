@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="tb_imoveis")
+@Table(name="tb_properties")
 public class Property {
 
     @Id
