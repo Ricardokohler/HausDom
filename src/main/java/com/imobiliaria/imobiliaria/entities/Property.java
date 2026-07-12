@@ -1,16 +1,12 @@
 package com.imobiliaria.imobiliaria.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="tb_imoveis")
+@Table(name="TB_PROPERTIES")
 public class Property {
 
     @Id
@@ -58,7 +54,7 @@ public class Property {
         this.address = address;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
@@ -66,12 +62,11 @@ public class Property {
         this.price = price;
     }
 
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
-    }
-
     public List<Order> getOrderList() {
         return orderList;
     }
 
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
 }

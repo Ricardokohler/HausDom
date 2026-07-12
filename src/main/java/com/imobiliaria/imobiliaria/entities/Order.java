@@ -15,11 +15,11 @@ public class Order {
     private String observations;
 
     @ManyToMany
-    @JoinTable(name="tb_orders_properties", joinColumns = @JoinColumn(name = "Id_Order"), inverseJoinColumns = @JoinColumn(name = "id_propertie"))
+    @JoinTable(name="tb_orders_properties", joinColumns = @JoinColumn(name = "id_order"), inverseJoinColumns = @JoinColumn(name = "id_property"))
     private List<Property> propertieList = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "Id_consultant")
+    @JoinColumn(name = "id_consultant")
     private Consultant consultant;
 
     @ManyToOne

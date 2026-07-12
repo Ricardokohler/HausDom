@@ -8,7 +8,6 @@ import com.imobiliaria.imobiliaria.repositories.ClientRepository;
 import com.imobiliaria.imobiliaria.repositories.OrderRepository;
 import com.imobiliaria.imobiliaria.repositories.PropertyRepository;
 import com.imobiliaria.imobiliaria.repositories.RealStateConsultantRepository;
-import org.hibernate.tool.schema.spi.CommandAcceptanceException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
