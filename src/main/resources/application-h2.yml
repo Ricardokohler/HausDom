@@ -17,5 +17,8 @@ spring:
     console:
       enabled: true
 
+      settings:
+        web-allow-others: true
+
   flyway:
     enabled: false

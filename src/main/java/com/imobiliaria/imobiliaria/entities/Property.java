@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="TB_PROPERTIES")
+@Table(name="tb_properties")
 public class Property {
 
     @Id

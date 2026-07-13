@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="tb_pedidos")
+@Table(name="tb_orders")
 public class Order {
 
     @Id
@@ -15,7 +15,7 @@ public class Order {
     private String observations;
 
     @ManyToMany
-    @JoinTable(name="tb_orders_properties", joinColumns = @JoinColumn(name = "id_order"), inverseJoinColumns = @JoinColumn(name = "id_property"))
+    @JoinTable(name="tb_orders_properties", joinColumns = @JoinColumn(name = "Id_order"), inverseJoinColumns = @JoinColumn(name = "id_properties"))
     private List<Property> propertieList = new ArrayList<>();
 
     @ManyToOne
