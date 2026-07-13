@@ -4,4 +4,4 @@ spring:
     name: HausDom
 
   profiles:
-    active: h2
+    active: postgres

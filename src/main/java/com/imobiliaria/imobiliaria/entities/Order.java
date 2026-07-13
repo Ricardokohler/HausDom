@@ -19,7 +19,7 @@ public class Order {
     private List<Property> propertieList = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "Id_consultant")
+    @JoinColumn(name = "id_consultant")
     private Consultant consultant;
 
     @ManyToOne
